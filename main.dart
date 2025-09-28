@@ -2,11 +2,15 @@ import 'triangle.dart';
 import 'dart:io';
 
 void main() {
-  final inchTriangle = Triangle.mm(30.0, 15.0);
-  inchTriangle.heightInCm = 200;
-  print("height in cm ${inchTriangle.heightInCm}");
-  final inchArea = inchTriangle.calcArea();
-  print(inchArea);
+  var triangle1=Triangle.mm(100, 100);
+  print("t1 area ${triangle1.area} mm");
+
+  final triangle2 = Triangle.cm(30.0, 15.0);
+  triangle2.heightInInch = 200;
+  triangle2.widthInCm=50;
+  print("height in cm ${triangle2.heightInCm}");
+  final area = triangle2.calcArea();
+  print(area);
 
   //ask user
   double? inputHeight, inputWidth;
@@ -42,7 +46,6 @@ void main() {
         (element) =>
             element.toString().split('.').last.toLowerCase() ==
             inputUnit!.toLowerCase(),
-        // orElse: () => UnitOfMesurement.values.first,
       );
     } catch (e) {
       error = true;
@@ -55,12 +58,4 @@ void main() {
     unitOfMesurement!,
   );
   print(triangle.calcArea());
-}
-
-void createTriangle(
-  double height,
-  double width,
-  UnitOfMesurement unitOfMesurement,
-) {
-  final triangle = Triangle.byUnitOfMesurement(height, width, unitOfMesurement);
 }

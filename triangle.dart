@@ -1,5 +1,3 @@
-import 'dart:io';
-
 enum UnitOfMesurement {
   mm(1),
   cm(10),
@@ -57,6 +55,8 @@ class Triangle {
     UnitOfMesurement.ft,
   );
 
+
+
   factory Triangle.byUnitOfMesurement(
     double height,
     double width,
@@ -95,6 +95,8 @@ class Triangle {
         return '${areaInMm2 / (UnitOfMesurement.ft.factorToMm * UnitOfMesurement.ft.factorToMm)}feet';
     }
   }
+
+
 
   double get heightInCm => _heightInMm / UnitOfMesurement.cm.factorToMm;
   set heightInCm(double height) {
@@ -161,4 +163,62 @@ class Triangle {
       throw Exception("invalid number");
     }
   }
+  //Teil der Aufgabe 5 
+  double get area {
+  double areaInMm2 = 0.5 * _heightInMm * _widthInMm;
+  switch (unitOfMesurement) {
+    case UnitOfMesurement.mm:
+      return areaInMm2; // Fläche in mm²
+    case UnitOfMesurement.cm:
+      return areaInMm2 / (UnitOfMesurement.cm.factorToMm * UnitOfMesurement.cm.factorToMm);
+    case UnitOfMesurement.dm:
+      return areaInMm2 / (UnitOfMesurement.dm.factorToMm * UnitOfMesurement.dm.factorToMm);
+    case UnitOfMesurement.m:
+      return areaInMm2 / (UnitOfMesurement.m.factorToMm * UnitOfMesurement.m.factorToMm);
+    case UnitOfMesurement.inch:
+      return areaInMm2 / (UnitOfMesurement.inch.factorToMm * UnitOfMesurement.inch.factorToMm);
+    case UnitOfMesurement.ft:
+      return areaInMm2 / (UnitOfMesurement.ft.factorToMm * UnitOfMesurement.ft.factorToMm);
+  }
+}
+double getHeight(UnitOfMesurement uom) {//uom = UnitOfMesurement
+  switch (uom) {
+    case UnitOfMesurement.mm:
+      return _heightInMm;
+    case UnitOfMesurement.cm:
+      return _heightInMm / UnitOfMesurement.cm.factorToMm;
+    case UnitOfMesurement.dm:
+      return _heightInMm / UnitOfMesurement.dm.factorToMm;
+    case UnitOfMesurement.m:
+      return _heightInMm / UnitOfMesurement.m.factorToMm;
+    case UnitOfMesurement.inch:
+      return _heightInMm / UnitOfMesurement.inch.factorToMm;
+    case UnitOfMesurement.ft:
+      return _heightInMm / UnitOfMesurement.ft.factorToMm;
+  }
+}
+
+void setHeight(UnitOfMesurement uom, int value) {
+  double valueDouble = value.toDouble();
+  switch (uom) {
+    case UnitOfMesurement.mm:
+      _heightInMm = valueDouble;
+      break;
+    case UnitOfMesurement.cm:
+      _heightInMm = valueDouble * UnitOfMesurement.cm.factorToMm;
+      break;
+    case UnitOfMesurement.dm:
+      _heightInMm = valueDouble * UnitOfMesurement.dm.factorToMm;
+      break;
+    case UnitOfMesurement.m:
+      _heightInMm = valueDouble * UnitOfMesurement.m.factorToMm;
+      break;
+    case UnitOfMesurement.inch:
+      _heightInMm = valueDouble * UnitOfMesurement.inch.factorToMm;
+      break;
+    case UnitOfMesurement.ft:
+      _heightInMm = valueDouble * UnitOfMesurement.ft.factorToMm;
+      break;
+  }
+}
 }
